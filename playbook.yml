@@ -3,7 +3,6 @@
   become: yes
   become_user: root
   become_method: sudo
-
   # vnc needs gnome yum groupinstall "Gnome Desktop" 
   tasks:
   - name: "import rpm keys"
