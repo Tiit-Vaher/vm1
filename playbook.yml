@@ -2,7 +2,9 @@
 - hosts: all
   become: yes
   become_user: root
-  become_method: sudo  
+  become_method: sudo
+
+  # vnc needs gnome yum groupinstall "Gnome Desktop" 
   tasks:
   - name: "import rpm keys"
     rpm_key:
@@ -12,7 +14,7 @@
     yum_repository:
       name: mono-centos7-stable
       description: "mono repo"
-      baseurl: "https://download.mono-project.com/repo/centos7-stable.repo"  
+      baseurl: "https://download.mono-project.com/repo/centos7-stable"  
   - name: "Install VNC and mono"
     yum:
       name: 
