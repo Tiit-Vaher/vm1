@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo  
+  tasks:
+  - name: "import rpm keys"
+    rpm_key:
+      state: present
+      key: http://pool.sks-keyservers.net/pks/lookup?op=get&search=0x3fa7e0328081bff6a14da29aa6a19b38d3d831ef
+  - name: "add repo mono-project"
+    yum_repository:
+      name: mono-centos7-stable
+      description: "mono repo"
+      baseurl: "https://download.mono-project.com/repo/centos7-stable.repo"  
+  - name: "Install VNC and mono"
+    yum:
+      name: 
+        - tigervnc
+        - tigervnc-server
+        - mono-devel
+      state: installed

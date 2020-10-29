@@ -1,1 +1,74 @@
+#
+#käskude nimekiri
+#
+#linuxmint 20 terminal
 
+	mkdir Desktop/workspace/vm1
+	cd Desktop/workspace/vm1
+
+#TASK 1
+
+	git config --global user.name "Tiit-Vaher"
+	git config --global user.email "tiit.vaher@outlook.com"
+	git init .
+
+	touch README
+	touch commands.txt
+	touch playbook.yml
+	git add README
+	git add commands.txt
+	git add playbook.yml
+	git commit -m "algus"
+	git push origin master
+
+
+#TASK 2
+
+	vagrant box add centos/7
+	vagrant plugin install vagrant-disksize
+	vagrant init centos/7
+	
+#uuendame "Vagrantfile"
+#   config.vm.hostname = "mytestserver"
+#   config.disksize.size = "30GB"
+#   config.vm.provider "virtualbox" do |vb|
+#     # Display the VirtualBox GUI when booting the machine
+#     vb.check_guest_additions = false
+#     vb.name = "mytestserver"
+#     vb.gui = true
+#     vb.cpus = 2
+#     vb.memory = "2048"
+#   end
+#default: Disk cannot be decreased in size. 30720 MB requested but disk is already 40960 MB.
+
+#TASK3
+#ansible provision
+#   config.vm.provision "ansible" do |ansible|
+#    ansible.playbook = "playbook.yml"
+#     ansible.sudo = true
+#   end	
+#end
+
+
+	vagrant up
+	#vagrant provision
+
+#TASK4
+	sudo useradd mytestuser
+	sudo passwd mytestuser
+	sudo visudo
+	#add mytestuser ALL= NOPASSWD: /usr/sbin/dmidecode, /usr/sbin/ip, /usr/bin/systemctl
+	#exit and save vi :w
+	
+	#vahetan kasutaja
+	cd /home/mytestuser 
+	echo "test123 sudodu copypaste proovitoo my_super_db hello_world" > database.lst
+	vi mybashscript.sh
+	#add sed -i -e 's/proovitöö/proovitöö_is_easy/g' database.lst 
+	#exit and save vi :w
+	
+	chmod 704 mybashscript.sh
+	mkdir /home/mytestuser/symtest
+	ln -s /home/mytestuser/mybashscript.sh /home/mytestuser/symtest/symlink
+	sudo dmidecode system-serial-number > /home/mytestuser/serial.txt
+#TASK5	c-sharp / Program.cs
